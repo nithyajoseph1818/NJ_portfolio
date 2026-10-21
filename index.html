@@ -84,7 +84,7 @@ header nav a:hover,header nav a.on{color:var(--ink);background:var(--surface)}
 .gline{display:block;overflow:hidden;padding-block:.14em .3em;margin-bottom:-.18em;white-space:nowrap}
 .gch{display:inline-block}
 .gch.acc{color:var(--accent)}
-.gch.go{animation:rise .8s cubic-bezier(.2,.8,.2,1) backwards}
+.gch.go{animation:rise .4s cubic-bezier(.2,.8,.2,1) backwards}
 @keyframes rise{from{transform:translateY(115%) rotate(5deg)}}
 .typed-line{font-size:clamp(1.4rem,3.2vw,2.3rem);font-weight:600;letter-spacing:-.03em;margin-top:6px;line-height:1.25}
 .typed-line .art{color:var(--accent)}
@@ -332,6 +332,13 @@ footer{border-top:1px solid var(--line);padding-block:26px;color:var(--muted);fo
   .rv:not(.in){transform:none}
   .rv,.rot,.zoom img,.sk,.btn{transition:none}
 }
+
+/* certificate preview and experience width */
+.cert.has-img{cursor:zoom-in}
+.cert .peek{display:none;position:absolute;bottom:calc(100% + 10px);left:0;width:min(300px,80vw);height:auto;border-radius:8px;border:1px solid var(--line);background:#fff;box-shadow:0 18px 40px var(--shadow);z-index:40;pointer-events:none}
+.certs .cert:nth-child(even) .peek{left:auto;right:0}
+@media (hover:hover){.cert.has-img:hover .peek{display:block}.cert.has-img:hover{z-index:30}}
+#experience .log{max-width:880px}
 </style>
 </head>
 <body>

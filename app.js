@@ -83,13 +83,30 @@ const JOBS = [
             "Supported website redesign and SEO work, targeting a 20% increase in website visibility.",
         ],
     },
+    {
+        when: "Aug 2024", where: "Coimbatore, TamilNadu", role: "Full Stack Development Intern", org: "Webgen",
+        points: [
+            "Practiced front-end development using HTML, CSS and JavaScript.",
+            "Learned website structure and foundational backend architecture.",
+        ],
+    },
+    {
+        when: "Dec 2023 to Mar 2024", where: "Coimbatore,TamilNadu", role: "Backend Development Intern", org: "Falcon Ed Technologies",
+        points: [
+            "Learned REST API concepts and backend architecture for web applications.",
+            "Gained exposure to API endpoints, HTTP requests and responses, and server-side logic.",
+        ],
+    },
 ];
 const CERTS = [
-    ["Apr 2026", "Cloud Computing and Distributed Systems", "NPTEL"],
-    ["Mar 2026", "Generative AI and Agentic AI for Executives", "Snowflake"],
-    ["Sep 2025", "Microsoft Azure AI Fundamentals", "Microsoft"],
-    ["Mar 2025", "MERN Stack and Full Stack Development", "Infosys Springboard"],
-    ["Jan 2024", "Web Development", "PrepInsta"],
+    ["Apr 2026", "Cloud Computing and Distributed Systems", "NPTEL", "assets/cert-nptel-cloud-distributed.webp"],
+    ["Mar 2026", "Generative AI and Agentic AI for Executives", "Snowflake", "assets/cert-snowflake-genai.webp"],
+    ["Sep 2025", "Microsoft Azure AI Fundamentals", "Microsoft", "assets/cert-azure-ai-fundamentals.webp"],
+    ["Jul to Oct 2025", "Artificial Intelligence: Concepts and Techniques", "NPTEL", "assets/cert-nptel-ai-concepts.webp"],
+    ["Mar 2025", "MERN Stack and Full Stack Development", "Infosys Springboard", "assets/cert-infosys-mern.webp"],
+    ["Jul to Oct 2024", "Cloud Computing", "NPTEL", "assets/cert-nptel-cloud-computing.webp"],
+    ["Jun 2024", "Full Stack Web Development (MERN Stack)", "PrepInsta", "assets/cert-prepinsta-web-development.webp"],
+    ["Jan to Apr 2024", "Introduction to Internet of Things", "NPTEL", "assets/cert-nptel-iot.webp"],
 ];
 const GALLERY = [
     { src: "assets/trophy.webp", w: 750, h: 1000, title: "Academic Topper 2025-26", text: "SNS College of Engineering, Computer Science and Engineering (IoT), CGPA 9.4.", alt: "Academic Topper 2025-26 trophy" },
@@ -292,7 +309,7 @@ function MorphName() {
     useEffect(() => {
         if (REDUCE)
             return;
-        const t = setInterval(() => { setAnim(true); setI((n) => (n + 1) % NAMES.length); }, 4600);
+        const t = setInterval(() => { setAnim(true); setI((n) => (n + 1) % NAMES.length); }, 3000);
         return () => clearInterval(t);
     }, []);
     const cur = NAMES[i];
@@ -303,7 +320,7 @@ function MorphName() {
                 word++;
                 return React.createElement("span", { key: k, className: "gch" }, "\u00A0");
             }
-            return React.createElement("span", { key: k, className: "gch" + (word ? " acc" : "") + (anim ? " go" : ""), style: { animationDelay: k * 55 + "ms" } }, c);
+            return React.createElement("span", { key: k, className: "gch" + (word ? " acc" : "") + (anim ? " go" : ""), style: { animationDelay: k * 22 + "ms" } }, c);
         }))));
 }
 function Network() {
@@ -649,24 +666,19 @@ function useProgress(ref) {
         return () => { cancelAnimationFrame(raf); window.removeEventListener("scroll", on); window.removeEventListener("resize", on); };
     }, []);
 }
-function Experience({ onOpen }) {
+function Experience() {
     const logRef = useRef(null);
     useProgress(logRef);
     return (React.createElement("section", { className: "band alt", id: "experience" },
-        React.createElement("div", { className: "wrap exp-grid" },
-            React.createElement("div", null,
-                React.createElement(SectionHead, { idx: "04", label: "Experience", title: "Where I've worked and trained." }),
-                React.createElement("ol", { className: "log", ref: logRef }, JOBS.map((j) => (React.createElement(Reveal, { as: "li", key: j.org, className: "job spot" },
-                    React.createElement("div", { className: "meta" },
-                        React.createElement("span", null, j.when),
-                        React.createElement("span", null, j.where)),
-                    React.createElement("h3", null, j.role),
-                    React.createElement("p", { className: "org" }, j.org),
-                    React.createElement("ul", null, j.points.map((t) => React.createElement("li", { key: t }, t)))))))),
-            React.createElement(Reveal, { as: "figure", className: "exp-photo", "data-confetti": "" },
-                React.createElement("button", { type: "button", className: "zoom", onClick: () => onOpen({ src: "assets/training-batch.webp", label: "Training batch", alt: "Nithya's training batch posing together in an office" }), "aria-label": "Enlarge training batch photo" },
-                    React.createElement("img", { src: "assets/training-batch.webp", alt: "Nithya's training batch posing together in an office", width: "1400", height: "1050", loading: "lazy" })),
-                React.createElement("figcaption", null, "With my training batch")))));
+        React.createElement("div", { className: "wrap" },
+            React.createElement(SectionHead, { idx: "04", label: "Experience", title: "Where I've worked and trained." }),
+            React.createElement("ol", { className: "log", ref: logRef }, JOBS.map((j) => (React.createElement(Reveal, { as: "li", key: j.org, className: "job spot" },
+                React.createElement("div", { className: "meta" },
+                    React.createElement("span", null, j.when),
+                    React.createElement("span", null, j.where)),
+                React.createElement("h3", null, j.role),
+                React.createElement("p", { className: "org" }, j.org),
+                React.createElement("ul", null, j.points.map((t) => React.createElement("li", { key: t }, t))))))))));
 }
 /* ---------- achievements ---------- */
 function Achievements({ onOpen }) {
@@ -688,11 +700,16 @@ function Achievements({ onOpen }) {
                     React.createElement("p", { className: "muted" }, "Organized blood donation camps, yoga sessions and space-themed events."))),
             React.createElement(Reveal, { className: "certs-head" },
                 React.createElement("h3", null, "Certifications")),
-            React.createElement("ul", { className: "certs" }, CERTS.map(([d, t, o]) => (React.createElement(Reveal, { as: "li", key: t, className: "cert spot" },
-                React.createElement("span", { className: "d" }, d),
-                React.createElement("div", null,
-                    React.createElement("b", null, t),
-                    React.createElement("span", null, o)))))))));
+            React.createElement("ul", { className: "certs" }, CERTS.map(([d, t, o, img]) => {
+                const view = { src: img, label: t + ", " + o, alt: "Certificate: " + t + ", " + o };
+                const extra = img ? { tabIndex: 0, role: "button", onClick: () => onOpen(view), onKeyDown: (e) => { if (e.key === "Enter") onOpen(view); } } : {};
+                return (React.createElement(Reveal, { as: "li", key: t, className: "cert spot" + (img ? " has-img" : ""), ...extra },
+                    React.createElement("span", { className: "d" }, d),
+                    React.createElement("div", null,
+                        React.createElement("b", null, t),
+                        React.createElement("span", null, o)),
+                    img && React.createElement("img", { className: "peek", src: img, alt: "", loading: "lazy" })));
+            })))));
 }
 /* ---------- contact ---------- */
 function Contact() {
